@@ -4,6 +4,8 @@ import 'package:totp_authentication_app/utils/project_colors_theme.dart';
 
 /// This [ElevatedButtonWidget] is a custom widget used for primary actions across the app.
 class ElevatedButtonWidget extends StatelessWidget {
+
+  
   // The widget to display as the button's content, typically a Text widget.
   final Widget text;
   // The callback function to execute when the button is pressed.
