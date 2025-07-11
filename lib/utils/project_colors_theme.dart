@@ -7,7 +7,7 @@ class ProjectColorsTheme {
   ProjectColorsTheme._();
 
   // --- MAIN COLORS ---
-  static const primaryColor = Color.fromARGB(255, 116, 72, 19);
+  static const primaryColor = Color.fromARGB(255, 82, 52, 16);
 
   // --- BLACK TONES ---
   /// Color for primary texts and titles.

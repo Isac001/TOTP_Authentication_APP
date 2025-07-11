@@ -5,7 +5,9 @@ const double kPaddingSmall = 8.0;
 const double kPaddingVerySmall = 4.0;
 
 // [Radius]
-const double kRadiusBig = 24.0;
+const double kRadiusXLarge = 24.0;
+const double kRadiusLarge = 16.0;
+const double kRadiusStandard = 12.0;
 const double kRadiusMedium = 8.0;
 const double kRadiusSmall = 4.0;
 

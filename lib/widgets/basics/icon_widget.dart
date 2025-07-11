@@ -44,7 +44,7 @@ class IconWidget extends StatelessWidget {
         // The decoration provides a circular shape and a background color
         // derived from the icon's color with low opacity.
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kRadiusBig),
+          borderRadius: BorderRadius.circular(kRadiusXLarge),
           color: color?.withAlpha(30),
         ),
         // Conditionally applies padding inside the decorated box if provided.

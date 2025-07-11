@@ -13,6 +13,9 @@ class CodeTOTPFieldWidget extends StatefulWidget {
   final int numberOfFields;
   // An optional callback function that is triggered when the code is completely filled.
   final Function(String)? onCompleted;
+  // ▼▼▼ 1. PROPRIEDADE ADICIONADA ▼▼▼
+  // An optional callback function that is triggered every time the input changes.
+  final Function(String)? onChanged;
 
   // Constructor for the CodeTOTPFieldWidget.
   const CodeTOTPFieldWidget({
@@ -20,6 +23,7 @@ class CodeTOTPFieldWidget extends StatefulWidget {
     required this.controller,
     this.numberOfFields = 6,
     this.onCompleted,
+    this.onChanged, // Adicionado ao construtor
   });
 
   @override
@@ -37,7 +41,9 @@ class _CodeTOTPFieldWidgetState extends State<CodeTOTPFieldWidget> {
     super.initState();
     // Adds a listener to the controller to rebuild the UI whenever the text changes.
     widget.controller.addListener(() {
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
     // Adds a listener to the focus node to manage the cursor position.
     _focusNode.addListener(() {
@@ -96,13 +102,20 @@ class _CodeTOTPFieldWidgetState extends State<CodeTOTPFieldWidget> {
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       // Callback triggered when the input value changes.
       onChanged: (value) {
-        // When the code is fully entered, trigger the onCompleted callback.
+        // ▼▼▼ 2. CALLBACK SENDO CHAMADO ▼▼▼
+        // Notifica o widget pai sobre a mudança no valor.
+        widget.onChanged?.call(value);
+        // ▲▲▲ FIM DA MUDANÇA ▲▲▲
+
+        // Quando o código é totalmente preenchido, aciona o onCompleted.
         if (value.length == widget.numberOfFields) {
           widget.onCompleted?.call(value);
           _focusNode.unfocus(); // Hides the keyboard.
+        } else {
+          // Rebuild the widget to update the visual boxes on every change.
+          // O listener no initState já cuida disso, mas um setState aqui garante a atualização.
+          setState(() {});
         }
-        // Rebuild the widget to update the visual boxes.
-        setState(() {});
       },
       // Makes the TextField effectively invisible.
       decoration: const InputDecoration(
@@ -131,13 +144,15 @@ class _CodeTOTPFieldWidgetState extends State<CodeTOTPFieldWidget> {
       width: 50,
       height: 60,
       decoration: BoxDecoration(
-        color: ProjectColorsTheme.lightGrey,
+        color: const Color(0xFFF0F0F0), // Cor de fundo mais clara
         // Using your border radius constant.
         borderRadius: BorderRadius.circular(kRadiusMedium),
         border: Border.all(
           // The border style changes if the box is currently selected.
-          color: isCurrent ? ProjectColorsTheme.primaryColor : ProjectColorsTheme.mediumGrey,
-          width: 2,
+          color: isCurrent
+              ? ProjectColorsTheme.primaryColor
+              : Colors.grey.shade400, // Cor da borda mais sutil
+          width: 1.5,
         ),
       ),
       // Centers the content within the box.

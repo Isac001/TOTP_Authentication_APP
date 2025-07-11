@@ -1,60 +1,35 @@
-// import 'dart:developer';
-// import 'package:dio/dio.dart';
-
-// class CustomInterceptors extends Interceptor {
-//   // Não precisamos mais do SecretRepository aqui
-
-//   CustomInterceptors();
-  
-//   // O onRequest agora serve apenas para log
-//   @override
-//   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-//     log('REQUEST[${options.method}] => PATH: ${options.path}', name: 'Dio');
-//     return super.onRequest(options, handler);
-//   }
-
-//   @override
-//   void onResponse(Response response, ResponseInterceptorHandler handler) {
-//     log('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}', name: 'Dio');
-//     return super.onResponse(response, handler);
-//   }
-
-//   @override
-//   void onError(DioException err, ErrorInterceptorHandler handler) {
-//     log('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}', name: 'Dio');
-//     return super.onError(err, handler);
-//   }
-// }
-
 import 'dart:developer';
 import 'package:dio/dio.dart';
 
+// Defines a custom interceptor for logging Dio requests, responses, and errors.
 class CustomInterceptors extends Interceptor {
-  // Para este projeto, o interceptor não precisa de dependências.
+  // A simple constructor for the interceptor.
   CustomInterceptors();
-  
+
+  // Overrides the onRequest method to intercept outgoing requests.
   @override
+  // This method is called before a request is sent.
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    log('REQUEST[${options.method}] => PATH: ${options.baseUrl}${options.path}', name: 'Dio');
+    // Logs the request method and full path to the console.
+    log('REQUEST[${options.method}] => PATH: ${options.baseUrl}${options.path}',
+        name: 'Dio');
+    // Forwards the request to the next handler in the chain.
     return super.onRequest(options, handler);
   }
 
+  // Overrides the onResponse method to intercept successful responses.
   @override
+  // This method is called when a response is received successfully.
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log(
-      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
-      name: 'Dio',
-    );
+    // Forwards the response to the next handler in the chain.
     return super.onResponse(response, handler);
   }
 
+  // Overrides the onError method to intercept failed requests.
   @override
+  // This method is called when an error occurs.
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    log(
-      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
-      name: 'Dio',
-    );
-    // A exceção continua a ser propagada para ser tratada pelo AuthService e pelo BLoC.
+    // Forwards the error to the next handler, allowing it to be caught by other parts of the app.
     return super.onError(err, handler);
   }
 }
