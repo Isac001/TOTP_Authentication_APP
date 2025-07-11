@@ -11,7 +11,8 @@
 
 ### Steps to Clone the Repository:
 
-
+ **ATTENTION: Please note that the JDK version of this project is 1.8.0_452**
+  
 - **Step 1:** Open a terminal and run the following command:
     ```bash
     git clone https://github.com/Isac001/TOTP_Authentication_APP.git
@@ -26,3 +27,5 @@
     ```bash
     flutter run --dart-define-from-file=.env.json
     ```
+
+
