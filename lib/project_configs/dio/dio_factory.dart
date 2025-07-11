@@ -1,58 +1,40 @@
-// import 'package:dio/dio.dart';
-// import 'package:totp_authentication_app/project_configs/dio_config/custom_inteceptors.dart';
-
-// class DioFactory {
-//   // Este método estático é a única fonte para criar o Dio no app
-//   static Dio createDio() { 
-//     final dio = Dio(
-//       BaseOptions(
-//         // URL base para o emulador Android ou seu IP local
-//         baseUrl: 'http://127.0.0.1:5000', 
-//         connectTimeout: const Duration(seconds: 15),
-//         receiveTimeout: const Duration(seconds: 15),
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Accept': 'application/json',
-//         },
-//       ),
-//     );
-
-//     // Adiciona nosso interceptor simplificado para logging
-//     dio.interceptors.add(CustomInterceptors());
-
-//     return dio;
-//   }
-// }
-
-
 import 'package:dio/dio.dart';
 import 'package:totp_authentication_app/project_configs/interceptos/custom_inteceptors.dart';
 
+// A factory class for creating pre-configured Dio instances.
 class DioFactory {
+  // A static method to create and configure a Dio instance.
   static Dio createDio() { 
-    // ▼▼▼ A CORREÇÃO ESTÁ AQUI ▼▼▼
-    // 1. Definimos o nome da variável de ambiente que queremos ler.
+    // Reads the base URL from an environment variable named 'BASEURL'.
     const String baseUrlFromEnv = String.fromEnvironment(
-      'BASEURL', // O nome DEVE ser exatamente este.
-      // 2. Definimos um valor padrão. É ESSENCIAL para rodar o app
-      // pela sua IDE (VS Code, Android Studio) sem configurar nada.
+      // The name of the environment variable to read.
+      'BASEURL',
     );
 
+    // Creates a new Dio instance with base options.
     final dio = Dio(
+      // Configuration options for the Dio instance.
       BaseOptions(
-        // 3. Usamos a variável lida do ambiente.
+        // Sets the base URL for all requests, read from the environment.
         baseUrl: baseUrlFromEnv, 
+        // Sets the connection timeout duration.
         connectTimeout: const Duration(seconds: 15),
+        // Sets the receive timeout duration.
         receiveTimeout: const Duration(seconds: 15),
+        // Sets the default headers for all requests.
         headers: {
+          // Sets the content type to JSON.
           'Content-Type': 'application/json',
+          // Sets the accepted response type to JSON.
           'Accept': 'application/json',
         },
       ),
     );
 
+    // Adds custom interceptors to the Dio instance.
     dio.interceptors.add(CustomInterceptors());
 
+    // Returns the fully configured Dio instance.
     return dio;
   }
 }
