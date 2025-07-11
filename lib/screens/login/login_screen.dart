@@ -13,23 +13,19 @@ import 'package:totp_authentication_app/widgets/snackbar/app_snackbar_widget.dar
 
 // Defines the LoginScreen as a stateful widget.
 class LoginScreen extends StatefulWidget {
-  // Constant constructor for the widget.
   const LoginScreen({super.key});
 
-  // Creates the mutable state for this widget.
   @override
-  // Returns a new instance of the _LoginScreenState.
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 // The state class for the LoginScreen widget.
 class _LoginScreenState extends State<LoginScreen> {
-  // A controller for the username text field.
+
+  // A controllers for the text field.
   final _userNameController = TextEditingController();
-  // A controller for the password text field.
   final _passwordController = TextEditingController();
 
-  // Called when this state object is inserted into the tree.
   @override
   // Initializes the state.
   void initState() {
@@ -43,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController.text = initialState.password;
   }
 
-  // Called when this state object is removed from the tree permanently.
   @override
   // Disposes of the resources used by the state.
   void dispose() {
@@ -55,10 +50,9 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  // Describes the part of the user interface represented by this widget.
   @override
-  // The build method returns the widget tree.
   Widget build(BuildContext context) {
+
     // Listens to state changes in AuthBloc to perform side effects.
     return BlocListener<AuthBloc, AuthState>(
       // The function to call when a state change occurs.
@@ -147,7 +141,6 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         // Displays an image from the asset bundle.
         Image.asset(
-          // The path to the image asset.
           'lib/assets/images/login_image.png',
           // Makes the image take the full width available.
           width: double.infinity,
@@ -261,9 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ? const CircularProgressIndicator(color: Colors.white)
               // Shows a text widget when not loading.
               : TextWidget(
-                  // The text to display on the button.
                   'Entrar',
-                  // The style for the button text.
                   style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: kBodyFontSizeBig,
@@ -280,13 +271,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
               // If disabled, the onTap callback is null.
               : null,
-          // Sets the background color of the button.
+          // Sets the design of the button.
           buttonColor: ProjectColorsTheme.primaryColor,
-          // Sets the color of the content when the button is pressed.
           onButtonColor: ProjectColorsTheme.white,
-          // Sets the border radius of the button.
           borderRadius: BorderRadius.circular(kRadiusStandard),
-          // Sets the height of the button.
           buttonHeight: MediaQuery.of(context).size.height * 0.06,
         );
       },
@@ -297,11 +285,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _forgotPasswordButton() {
     // Returns a custom text button widget.
     return TextButtonWidget(
-      // The text to display on the button.
+      // The Design for the button.
       text: 'Esqueci a senha',
-      // The font size for the button text.
       fontSize: kBodyFontSizeBig,
-      // The color of the button text.
       textColor: ProjectColorsTheme.primaryColor,
       // The callback function to execute when tapped.
       onTap: () {},

@@ -10,11 +10,8 @@ class LoginRequestModel {
 
   // Constant constructor requiring all fields.
   const LoginRequestModel({
-    // Requires the username parameter.
     required this.username,
-    // Requires the password parameter.
     required this.password,
-    // Requires the totpCode parameter.
     required this.totpCode,
   });
 
@@ -22,11 +19,8 @@ class LoginRequestModel {
   Map<String, dynamic> toJson() {
     // Returns a Map with keys matching the API's expected format.
     return {
-      // Maps the username property to the 'username' key.
       'username': username,
-      // Maps the password property to the 'password' key.
       'password': password,
-      // Maps the totpCode property to the 'totp_code' key.
       'totp_code': totpCode,
     };
   }
@@ -43,11 +37,8 @@ class RecoverSecretRequestModel {
 
   // Constant constructor requiring all fields.
   const RecoverSecretRequestModel({
-    // Requires the username parameter.
     required this.username,
-    // Requires the password parameter.
     required this.password,
-    // Requires the code parameter.
     required this.code,
   });
 
@@ -55,11 +46,8 @@ class RecoverSecretRequestModel {
   Map<String, dynamic> toJson() {
     // Returns a Map with keys matching the API's expected format.
     return {
-      // Maps the username property to the 'username' key.
       'username': username,
-      // Maps the password property to the 'password' key.
       'password': password,
-      // Maps the code property to the 'code' key.
       'code': code,
     };
   }

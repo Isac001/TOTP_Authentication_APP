@@ -3,15 +3,15 @@ import 'package:totp_authentication_app/auth/models/auth_model.dart';
 
 // A service class responsible for handling authentication API calls.
 class AuthService {
+
   // A final private property to hold the Dio instance.
   final Dio _dio;
 
   // Constructor that injects a Dio instance.
   AuthService({required Dio dio}) : _dio = dio;
 
-  // Defines the endpoint for the login API call as a static constant.
+  // Defines the endpoints for the login API.
   static const String _loginEndpoint = '/auth/login';
-  // Defines the endpoint for the secret recovery API call as a static constant.
   static const String _recoverySecretEndpoint = '/auth/recovery-secret';
 
   // Asynchronous method to recover the TOTP secret from the API.

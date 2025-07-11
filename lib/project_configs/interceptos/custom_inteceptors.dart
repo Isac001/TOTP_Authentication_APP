@@ -6,7 +6,6 @@ class CustomInterceptors extends Interceptor {
   // A simple constructor for the interceptor.
   CustomInterceptors();
 
-  // Overrides the onRequest method to intercept outgoing requests.
   @override
   // This method is called before a request is sent.
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -25,7 +24,6 @@ class CustomInterceptors extends Interceptor {
     return super.onResponse(response, handler);
   }
 
-  // Overrides the onError method to intercept failed requests.
   @override
   // This method is called when an error occurs.
   void onError(DioException err, ErrorInterceptorHandler handler) {

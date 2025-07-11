@@ -22,10 +22,9 @@ abstract class AuthState extends Equatable {
     // Sets the default password to an empty string.
     this.password = '',
     // Sets the default recovery code to an empty string.
-    this.recoveryCode = '', 
+    this.recoveryCode = '',
   });
 
-  // Overrides the props getter for Equatable comparison.
   @override
   // Returns a list of properties to be used in the equality comparison.
   List<Object?> get props => [username, password, recoveryCode];
@@ -38,11 +37,8 @@ class AuthInitial extends AuthState {}
 class AuthLoading extends AuthState {
   // Constant constructor passing properties to the base class.
   const AuthLoading({
-    // Requires the username property.
     required super.username,
-    // Requires the password property.
     required super.password,
-    // The recoveryCode property is optional.
     super.recoveryCode,
   });
 }
@@ -51,11 +47,8 @@ class AuthLoading extends AuthState {
 class AuthReadyToLogin extends AuthState {
   // Constant constructor passing properties to the base class.
   const AuthReadyToLogin({
-    // Requires the username property.
     required super.username,
-    // Requires the password property.
     required super.password,
-    // The recoveryCode property is optional.
     super.recoveryCode,
   });
 }
@@ -73,11 +66,8 @@ class AuthSuccess extends AuthState {}
 class AuthRecoveryReady extends AuthState {
   // Constant constructor passing properties to the base class.
   const AuthRecoveryReady({
-    // Requires the username property.
     required super.username,
-    // Requires the password property.
     required super.password,
-    // Requires the recoveryCode property.
     required super.recoveryCode,
   });
 }
@@ -86,16 +76,14 @@ class AuthRecoveryReady extends AuthState {
 class AuthLoginFailure extends AuthState {
   // Final property to hold the error message.
   final String message;
+
   // Constant constructor requiring a message and other properties.
   const AuthLoginFailure(
-    // The error message to be displayed.
     this.message, {
-    // Requires the username property.
     required super.username,
-    // Requires the password property.
     required super.password,
   });
-  // Overrides props to include the message in the equality comparison.
+
   @override
   // Returns a list of all properties including the message.
   List<Object?> get props => [message, username, password];
@@ -105,18 +93,14 @@ class AuthLoginFailure extends AuthState {
 class AuthRecoveryFailure extends AuthState {
   // Final property to hold the error message.
   final String message;
+
   // Constant constructor requiring a message and other properties.
   const AuthRecoveryFailure(
-    // The error message to be displayed.
     this.message, {
-    // Requires the username property.
     required super.username,
-    // Requires the password property.
     required super.password,
-    // Requires the recoveryCode property.
     required super.recoveryCode,
   });
-  // Overrides props to include the message in the equality comparison.
   @override
   // Returns a list of all properties including the message.
   List<Object?> get props => [message, username, password, recoveryCode];

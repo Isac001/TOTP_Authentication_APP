@@ -15,10 +15,8 @@ import 'package:totp_authentication_app/widgets/snackbar/app_snackbar_widget.dar
 
 // Defines the screen for TOTP code validation and secret recovery.
 class TOPTCodeValidationScreen extends StatefulWidget {
-  // Constant constructor for the widget.
   const TOPTCodeValidationScreen({super.key});
 
-  // Creates the mutable state for this widget.
   @override
   // Returns a new instance of the _TOPTCodeValidationScreenState.
   State<TOPTCodeValidationScreen> createState() =>
@@ -30,7 +28,6 @@ class _TOPTCodeValidationScreenState extends State<TOPTCodeValidationScreen> {
   // A controller for the code input text field.
   final _codeController = TextEditingController();
 
-  // Called when this state object is removed from the tree permanently.
   @override
   // Disposes of the resources used by the state.
   void dispose() {
@@ -194,9 +191,7 @@ class _TOPTCodeValidationScreenState extends State<TOPTCodeValidationScreen> {
           ? const CircularProgressIndicator(color: Colors.white)
           // Shows a text widget when not loading.
           : TextWidget(
-              // The text to display on the button.
               'Recuperar',
-              // The style for the button text.
               style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: kBodyFontSizeBig,
@@ -235,18 +230,13 @@ class _TOPTCodeValidationScreenState extends State<TOPTCodeValidationScreen> {
       child: TextButtonWidget(
         // The icon to display on the button.
         icon: IconWidget(
-          // The icon data.
           Icons.chat_bubble_outline_outlined,
-          // The color of the icon.
           color: ProjectColorsTheme.primaryColor,
-          // The size of the icon.
           size: MediaQuery.of(context).size.height * 0.025,
         ),
         // The text to display on the button.
         text: 'Não recebi o código',
-        // The font size for the button text.
         fontSize: kBodyFontSizeBig,
-        // The color of the button text.
         textColor: ProjectColorsTheme.darkGrey,
         // The callback function to execute when tapped.
         onTap: () {
@@ -262,9 +252,7 @@ class _TOPTCodeValidationScreenState extends State<TOPTCodeValidationScreen> {
     return IconButtonWidget(
       // The icon data for the button.
       icon: Icons.arrow_back_ios,
-      // The size of the icon.
       size: MediaQuery.of(context).size.height * 0.025,
-      // The color of the icon.
       color: ProjectColorsTheme.primaryColor,
       // The callback function to execute when tapped.
       onTap: () {

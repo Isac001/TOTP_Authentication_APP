@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // A repository class to manage storing and retrieving the TOTP secret securely.
 class SecretRepository {
+  
   // Creates an instance of FlutterSecureStorage to interact with secure storage.
   final _storage = FlutterSecureStorage();
   // Defines a constant key for storing and retrieving the secret.
